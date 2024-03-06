@@ -84,6 +84,22 @@ class TestBaseModel_instantation(unittest.TestCase):
         Bm2 = BaseModel()
         self.assertLess(Bm1.updated_at, Bm2.updated_at)
 
+    def test_str_rep(self):
+        """ test the string representation"""
+        dt = datetime.now()
+        Bm1 = BaseModel()
+        Bm1.id = "23456"
+        Bm1.number = 1997
+        Bm1.name = "My first Model"
+        Bm1.created_at = dt
+        Bm1.updated_at = dt
+        Bm1str = Bm1.__str__()
+        self.assertIn("[BaseModel] (23456)", Bm1str)
+        self.assertIn("'id': '23456'", Bm1str)
+        self.assertIn("'number': 1997", Bm1str)
+        self.assertIn("'name': 'My first Model'", Bm1str)
+        self.assertIn("'updated_at': " + datetime.now()), Bm1str)
+
 
 if __name__ == "__main__":
     unittest.main()
