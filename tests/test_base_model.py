@@ -31,7 +31,6 @@ class TestBaseModel_instantation(unittest.TestCase):
         self.assertNotEqual(float, type(Bid))
         self.assertNotEqual(list, type(Bid))
         self.assertNotEqual(dict, type(Bid))
-        self.assertNotEqual(dict, type(Bid))
         self.assertNotEqual(set, type(Bid))
 
     def test_two_models_id(self):
@@ -98,7 +97,40 @@ class TestBaseModel_instantation(unittest.TestCase):
         self.assertIn("'id': '23456'", Bm1str)
         self.assertIn("'number': 1997", Bm1str)
         self.assertIn("'name': 'My first Model'", Bm1str)
-        self.assertIn("'updated_at': " + datetime.now()), Bm1str)
+        self.assertIn("'updated_at': " + repr(dt), Bm1str)
+        self.assertIn("'created_at': " + repr(dt), Bm1str)
+
+    def test_args_none(self):
+        """ test if no args is passed to the BaseModel"""
+        Bm1 = BaseModel(None)
+        self.assertNotIn(None, Bm1.__dict__.values())
+
+    def test_args_with_args(self):
+        """ test if the arguments passed to the function works"""
+        dt = datetime.now()
+        Bm1 = BaseModel(id="123")
+        Bm1.id = "123"
+        self.assertEqual(Bm1.id, "123")
+
+class TestBaseModel_Save(unittest.TestCase):
+    """this is a test case for the save function in unit test"""
+    def test_save_once(self):
+        """test if when saved once the date is diff"""
+        Bm1 = BaseModel()
+        sleep(1)
+        first_update = Bm1.updated_at
+        Bm1.save()
+        self.assertLess(first_update, Bm1.update_at)
+
+    def test_save_twice(self):
+        """test if when saved twice the date is diff"""
+        Bm1 = BaseModel()
+        sleep(1)
+        first_update = Bm1.updated_at
+        Bm1.save()
+        second_update = Bm1.update_at
+        Bm1.save()
+        self.assertLess(first_update, second_update)
 
 
 if __name__ == "__main__":

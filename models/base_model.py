@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from datetime import datetime
 from uuid import uuid4
-
+import models
 
 class BaseModel():
     """ A base model class that defines all common
@@ -14,7 +14,14 @@ class BaseModel():
         self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.today()
-
+        if len(kwargs) != 0:
+            for k, v in kwargs.items():
+                if k == "created_at" or k == "updated_at":
+                    self.__dict__[k] = datetime.strptime(v, time_format)
+                else:
+                    self.__dict__[k] = v
+        else:
+            pass
     def save(self):
         """ a public instance method that updates the updated_at
         with the currnt date
