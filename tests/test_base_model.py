@@ -112,6 +112,7 @@ class TestBaseModel_instantation(unittest.TestCase):
         Bm1.id = "123"
         self.assertEqual(Bm1.id, "123")
 
+
 class TestBaseModel_Save(unittest.TestCase):
     """this is a test case for the save function in unit test"""
     def test_save_once(self):
