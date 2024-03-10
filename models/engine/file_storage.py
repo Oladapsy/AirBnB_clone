@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-""" this is a class that defines file storage"""
-from models.base_model import BaseModel
-import models
 import json
+""" this is a class that defines file storage"""
+"""from models.base_model import BaseModel"""
+"""import models"""
 
 
 class FileStorage:
