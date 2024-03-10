@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """A program that contains entry point of the command interpreter: """
 import cmd
-from models.base_model import BaseModel
+"""from models.base_model import BaseModel"""
 
 
 class HBNBCommand(cmd.Cmd):
@@ -29,7 +29,7 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] != "BaseModel":
             print("** class doesn't exist **")
         else:
-            test = args[0]
+            pass
 
 
 if __name__ == '__main__':

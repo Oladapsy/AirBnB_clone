@@ -107,7 +107,6 @@ class TestBaseModel_instantation(unittest.TestCase):
 
     def test_args_with_args(self):
         """ test if the arguments passed to the function works"""
-        dt = datetime.now()
         Bm1 = BaseModel(id="123")
         Bm1.id = "123"
         self.assertEqual(Bm1.id, "123")
